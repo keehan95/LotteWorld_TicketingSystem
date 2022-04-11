@@ -1,9 +1,9 @@
 #include <stdio.h> 
 
 /*
-ÀÜ¾× °è»ê ÇÔ¼ö 
-ÀÜ¾× = ¿øÈ­ - ((INT)(È¯Àü±İ¾×) x È¯À²)
-1¿ø´ÜÀ§ ¹İ¿Ã¸² °è»ê
+ì”ì•¡ ê³„ì‚° í•¨ìˆ˜ 
+ì”ì•¡ = ì›í™” - ((INT)(í™˜ì „ê¸ˆì•¡) x í™˜ìœ¨)
+1ì›ë‹¨ìœ„ ë°˜ì˜¬ë¦¼ ê³„ì‚°
 */ 
 int calculateCharge(int won, float output, float rate ){
 	int charge = won - ((int)output*rate);
@@ -15,8 +15,8 @@ int calculateCharge(int won, float output, float rate ){
 	return charge;
 }
 /*
-ÀÜ¾× Ãâ·Â ÇÔ¼ö 
-1000,500,100,50,10¿ø´ÜÀ§ Ãâ·Â 
+ì”ì•¡ ì¶œë ¥ í•¨ìˆ˜ 
+1000,500,100,50,10ì›ë‹¨ìœ„ ì¶œë ¥ 
 */
 void printCharge(int charge){
 	int won1000 = charge / 1000;
@@ -24,80 +24,80 @@ void printCharge(int charge){
 	int won100 = (charge - won1000*1000 - won500*500) / 100;
 	int won50 = (charge - won1000*1000 - won500*500 - won100*100) / 50;
 	int won10 = (charge- won1000*1000 - won500*500 - won100*100 - won50*50) / 10;
-	printf("°Å½º¸§µ· : %d¿ø ( 1000¿ø : %d°³, 500¿ø : %d°³, 100¿ø : %d°³, 50¿ø : %d°³,  10¿ø : %d°³)\n",charge, won1000, won500, won100, won50, won10);
+	printf("ê±°ìŠ¤ë¦„ëˆ : %dì› ( 1000ì› : %dê°œ, 500ì› : %dê°œ, 100ì› : %dê°œ, 50ì› : %dê°œ,  10ì› : %dê°œ)\n",charge, won1000, won500, won100, won50, won10);
 }
 
 int main(){
-	const float RATE_USD = 1233.50; // ¹Ì±¹ È¯À² 
-	const float RATE_JPY = 9.84; // ÀÏº» È¯À² 
-	const float RATE_EUR = 1341.92; // À¯·´¿¬ÇÕ È¯À² 
-	const float RATE_CNY = 193.21; // Áß±¹ È¯À² 
-	const float RATE_GBP = 1602.93; // ¿µ±¹ È¯À²
+	const float RATE_USD = 1233.50; // ë¯¸êµ­ í™˜ìœ¨ 
+	const float RATE_JPY = 9.84; // ì¼ë³¸ í™˜ìœ¨ 
+	const float RATE_EUR = 1341.92; // ìœ ëŸ½ì—°í•© í™˜ìœ¨ 
+	const float RATE_CNY = 193.21; // ì¤‘êµ­ í™˜ìœ¨ 
+	const float RATE_GBP = 1602.93; // ì˜êµ­ í™˜ìœ¨
 	 
 	 
-	int inputWon = 0; // ÀÔ·Â ¿øÈ­ º¯¼ö 
-	int choice = 0; // È¯ÀüÇÒ ¿ÜÈ­ ´ÜÀ§ º¯¼ö 
+	int inputWon = 0; // ì…ë ¥ ì›í™” ë³€ìˆ˜ 
+	int choice = 0; // í™˜ì „í•  ì™¸í™” ë‹¨ìœ„ ë³€ìˆ˜ 
  	
- 	//È¯Àü ±İ¾× 
+ 	//í™˜ì „ ê¸ˆì•¡ 
 	float outputUSD = 0;  
 	float outputJPY = 0; 
 	float outputEUR = 0;
 	float outputCNY = 0; 
 	float outputGBP = 0;
 	
-	printf("È¯ÀüÀ» ¿øÇÏ´Â ±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä(¿øÈ­) : ");
-	scanf("%d", &inputWon);
-	printf("È¯ÀüÇÒ ¿ÜÈ­¸¦ ¼±ÅÃÇÏ¼¼¿ä (1:USD, 2:JPY, 3:EUR, 4:CNY, 5:GBP) : ");
-	scanf("%d", &choice);
+	printf("í™˜ì „ì„ ì›í•˜ëŠ” ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš”(ì›í™”) : ");
+	scanf_s("%d", &inputWon);
+	printf("í™˜ì „í•  ì™¸í™”ë¥¼ ì„ íƒí•˜ì„¸ìš” (1:USD, 2:JPY, 3:EUR, 4:CNY, 5:GBP) : ");
+	scanf_s("%d", &choice);
 	
 	switch(choice){
 		case 1: {
-			printf("±âÁØ È¯À² : %.2f\n",RATE_USD);
-			printf("È¯Àü °á°ú\n");
-			outputUSD = inputWon / RATE_USD; //´Ş·¯  °è»ê 
-			int usdCharge = calculateCharge(inputWon, outputUSD, RATE_USD); // °Å½º¸§µ· °è»ê 
-			printf("´Ş·¯ : %d´Ş·¯\n",(int)outputUSD);
+			printf("ê¸°ì¤€ í™˜ìœ¨ : %.2f\n",RATE_USD);
+			printf("í™˜ì „ ê²°ê³¼\n");
+			outputUSD = inputWon / RATE_USD; //ë‹¬ëŸ¬  ê³„ì‚° 
+			int usdCharge = calculateCharge(inputWon, outputUSD, RATE_USD); // ê±°ìŠ¤ë¦„ëˆ ê³„ì‚° 
+			printf("ë‹¬ëŸ¬ : %dë‹¬ëŸ¬\n",(int)outputUSD);
 			printCharge(usdCharge);
 			break;
 		}
 		case 2:{
-			printf("±âÁØ È¯À² : %.2f\n",RATE_JPY);
-			printf("È¯Àü °á°ú\n");
-			outputJPY = inputWon / RATE_JPY; // ¿£È­ ±İ¾× °è»ê 
-			int jpyCharge = calculateCharge(inputWon, outputJPY, RATE_JPY); //°Å½º¸§µ· °è»ê	
-			printf("¿£ : %d¿£\n",(int)outputJPY);
+			printf("ê¸°ì¤€ í™˜ìœ¨ : %.2f\n",RATE_JPY);
+			printf("í™˜ì „ ê²°ê³¼\n");
+			outputJPY = (inputWon / RATE_JPY)-(int)(inputWon / RATE_JPY)%100; // ì—”í™” ê¸ˆì•¡ ê³„ì‚° 
+			int jpyCharge = calculateCharge(inputWon, outputJPY, RATE_JPY); //ê±°ìŠ¤ë¦„ëˆ ê³„ì‚°	
+			printf("ì—” : %dì—”\n",(int)outputJPY);
 			printCharge(jpyCharge);
 			break;
 		}
 		case 3:{
-			printf("±âÁØ È¯À² : %.2f\n",RATE_EUR);
-			printf("È¯Àü °á°ú\n");
-			outputEUR = inputWon / RATE_EUR; //À¯·Î °è»ê 
-			int eurCharge = calculateCharge(inputWon, outputEUR, RATE_EUR); //°Å½º¸§µ· °è»ê	
-			printf("À¯·Î : %dÀ¯·Î\n",(int)outputEUR);
+			printf("ê¸°ì¤€ í™˜ìœ¨ : %.2f\n",RATE_EUR);
+			printf("í™˜ì „ ê²°ê³¼\n");
+			outputEUR = inputWon / RATE_EUR; //ìœ ë¡œ ê³„ì‚° 
+			int eurCharge = calculateCharge(inputWon, outputEUR, RATE_EUR); //ê±°ìŠ¤ë¦„ëˆ ê³„ì‚°	
+			printf("ìœ ë¡œ : %dìœ ë¡œ\n",(int)outputEUR);
 			printCharge(eurCharge);
 			break;		
 		}
 		case 4:{
-			printf("±âÁØ È¯À² : %.2f\n",RATE_CNY);
-			printf("È¯Àü °á°ú\n");
-			outputCNY = inputWon / RATE_CNY; //À§¾È °è»ê 
-			int cnyCharge = calculateCharge(inputWon, outputCNY, RATE_CNY); //°Å½º¸§µ· °è»ê	
-			printf("À§¾È : %dÀ§¾È\n",(int)outputCNY);
+			printf("ê¸°ì¤€ í™˜ìœ¨ : %.2f\n",RATE_CNY);
+			printf("í™˜ì „ ê²°ê³¼\n");
+			outputCNY = inputWon / RATE_CNY; //ìœ„ì•ˆ ê³„ì‚° 
+			int cnyCharge = calculateCharge(inputWon, outputCNY, RATE_CNY); //ê±°ìŠ¤ë¦„ëˆ ê³„ì‚°	
+			printf("ìœ„ì•ˆ : %dìœ„ì•ˆ\n",(int)outputCNY);
 			printCharge(cnyCharge);
 			break;		
 		}
 		case 5:{
-			printf("±âÁØ È¯À² : %.2f\n",RATE_GBP);
-			printf("È¯Àü °á°ú\n");
-			outputGBP = inputWon / RATE_GBP; //ÆÄ¿îµå °è»ê 
-			int gbpCharge = calculateCharge(inputWon, outputGBP, RATE_GBP); //°Å½º¸§µ· °è»ê 
-			printf("ÆÄ¿îµå : %dÆÄ¿îµå\n",(int)outputGBP);
+			printf("ê¸°ì¤€ í™˜ìœ¨ : %.2f\n",RATE_GBP);
+			printf("í™˜ì „ ê²°ê³¼\n");
+			outputGBP = inputWon / RATE_GBP; //íŒŒìš´ë“œ ê³„ì‚° 
+			int gbpCharge = calculateCharge(inputWon, outputGBP, RATE_GBP); //ê±°ìŠ¤ë¦„ëˆ ê³„ì‚° 
+			printf("íŒŒìš´ë“œ : %díŒŒìš´ë“œ\n",(int)outputGBP);
 			printCharge(gbpCharge);
 			break;	
 		}
 		default:{
-			printf("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			printf("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			break;
 		}
 	}
