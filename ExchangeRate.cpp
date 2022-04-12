@@ -41,16 +41,19 @@ int main(){
  	//환전 금액 
 	float outputUSD = 0;  
 	float outputJPY = 0; 
-	float outputEUR = 0;
+	float outputEUR = 0; 
 	float outputCNY = 0; 
 	float outputGBP = 0;
 	
-	do{
 	printf("환전을 원하는 금액을 입력하세요(원화) : ");
 	scanf("%d", &inputWon);
+	
+	do {
 	printf("환전할 외화를 선택하세요 (1:USD, 2:JPY, 3:EUR, 4:CNY, 5:GBP) : ");
 	scanf("%d", &choice);
-	if(choice == 1){
+	} while (choice < 1 || choice > 5);
+
+	if (choice == 1){
 		printf("기준 환율 : %.2f\n",RATE_USD);
 		printf("환전 결과\n");
 		outputUSD = inputWon / RATE_USD; //달러  계산 
@@ -60,7 +63,7 @@ int main(){
 	} else if (choice == 2){
 		printf("기준 환율 : %.2f\n",RATE_JPY);
 		printf("환전 결과\n");
-		outputJPY = (inputWon / RATE_JPY)-(int)(inputWon / RATE_JPY)%100; // 엔화 금액 계산 
+		outputJPY = (inputWon / RATE_JPY)-(int)(inputWon / RATE_JPY)%100; // 엔화 계산 
 		int jpyCharge = calculateCharge(inputWon, outputJPY, RATE_JPY); //거스름돈 계산	
 		printf("엔 : %d엔\n",(int)outputJPY);
 		printCharge(jpyCharge);
@@ -78,17 +81,14 @@ int main(){
 		int cnyCharge = calculateCharge(inputWon, outputCNY, RATE_CNY); //거스름돈 계산	
 		printf("위안 : %d위안\n",(int)outputCNY);
 		printCharge(cnyCharge);
-	} else if (choice == 5){
+	} else {
 		printf("기준 환율 : %.2f\n",RATE_GBP);
 		printf("환전 결과\n");
 		outputGBP = inputWon / RATE_GBP; //파운드 계산 
 		int gbpCharge = calculateCharge(inputWon, outputGBP, RATE_GBP); //거스름돈 계산 
 		printf("파운드 : %d파운드\n",(int)outputGBP);
 		printCharge(gbpCharge);
-	} else {
-		printf("메뉴를 잘못 선택하셨습니다. (입력 : %d)\n", choice);
-	}
-}while(choice < 1 || choice > 5);
+	} 
 	 
 
 /*	
