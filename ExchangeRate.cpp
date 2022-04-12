@@ -46,7 +46,6 @@ void printResult(int won, float output, float rate, int choice){
 	printf("기준 환율 : %.2f\n",rate);
 	printf("환전 결과\n");
 	output = calculateOutput(won, output, rate, choice);
-	int charge = calculateCharge(won, output, rate);
 	switch(choice){
 		case 1:{
 			printf("달러 : %d달러\n",(int)output);
@@ -72,7 +71,7 @@ void printResult(int won, float output, float rate, int choice){
 			break;
 		}
 	}
-	printCharge(charge);
+	printCharge(calculateCharge(won, output, rate));
 }	
 
 
