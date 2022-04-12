@@ -1,4 +1,15 @@
 #include <stdio.h> 
+/*
+환전 금액 계산 함수
+엔화는 100엔 단위 환전
+*/ 
+float calculateOutput(int won, float output, float rate, int choice){
+	if(choice == 2){
+		output = (won / rate) - (int)(won / rate)%100;
+	} else {
+	output = won / rate;
+	}
+}
 
 /*
 잔액 계산 함수 
@@ -14,6 +25,7 @@ int calculateCharge(int won, float output, float rate ){
 	}
 	return charge;
 }
+
 /*
 잔액 출력 함수 
 1000,500,100,50,10원단위 출력 
@@ -25,7 +37,46 @@ void printCharge(int charge){
 	int won50 = (charge - won1000*1000 - won500*500 - won100*100) / 50;
 	int won10 = (charge- won1000*1000 - won500*500 - won100*100 - won50*50) / 10;
 	printf("거스름돈 : %d원 ( 1000원 : %d개, 500원 : %d개, 100원 : %d개, 50원 : %d개,  10원 : %d개)\n",charge, won1000, won500, won100, won50, won10);
-}
+} 
+
+/*
+결과 출력 함수 
+*/
+void printResult(int won, float output, float rate, int choice){
+	printf("기준 환율 : %.2f\n",rate);
+	printf("환전 결과\n");
+	output = calculateOutput(won, output, rate, choice);
+	int charge = calculateCharge(won, output, rate);
+	switch(choice){
+		case 1:{
+			printf("달러 : %d달러\n",(int)output);
+			break;
+		}
+		case 2:{
+			printf("엔 : %d엔\n",(int)output);
+			break;
+		}
+		case 3:{
+			printf("유로 : %d유로\n",(int)output);
+			break;
+		}
+		case 4:{
+			printf("위안 : %d위안\n",(int)output);
+			break;
+		}
+		case 5:{
+			printf("파운드 : %d파운드\n",(int)output);
+			break;
+		}
+		default:{
+			break;
+		}
+	}
+	printCharge(charge);
+}	
+
+
+
 
 int main(){
 	const float RATE_USD = 1233.50; // 미국 환율 
@@ -54,97 +105,16 @@ int main(){
 	} while (choice < 1 || choice > 5);
 
 	if (choice == 1){
-		printf("기준 환율 : %.2f\n",RATE_USD);
-		printf("환전 결과\n");
-		outputUSD = inputWon / RATE_USD; //달러  계산 
-		int usdCharge = calculateCharge(inputWon, outputUSD, RATE_USD); // 거스름돈 계산 
-		printf("달러 : %d달러\n",(int)outputUSD);
-		printCharge(usdCharge);
+		printResult(inputWon, outputUSD, RATE_USD, choice);
 	} else if (choice == 2){
-		printf("기준 환율 : %.2f\n",RATE_JPY);
-		printf("환전 결과\n");
-		outputJPY = (inputWon / RATE_JPY)-(int)(inputWon / RATE_JPY)%100; // 엔화 계산 
-		int jpyCharge = calculateCharge(inputWon, outputJPY, RATE_JPY); //거스름돈 계산	
-		printf("엔 : %d엔\n",(int)outputJPY);
-		printCharge(jpyCharge);
+		printResult(inputWon, outputJPY, RATE_JPY, choice);
 	} else if (choice == 3){
-		printf("기준 환율 : %.2f\n",RATE_EUR);
-		printf("환전 결과\n");
-		outputEUR = inputWon / RATE_EUR; //유로 계산 
-		int eurCharge = calculateCharge(inputWon, outputEUR, RATE_EUR); //거스름돈 계산	
-		printf("유로 : %d유로\n",(int)outputEUR);
-		printCharge(eurCharge);
+		printResult(inputWon, outputEUR, RATE_EUR, choice);
 	} else if (choice == 4){
-		printf("기준 환율 : %.2f\n",RATE_CNY);
-		printf("환전 결과\n");
-		outputCNY = inputWon / RATE_CNY; //위안 계산 
-		int cnyCharge = calculateCharge(inputWon, outputCNY, RATE_CNY); //거스름돈 계산	
-		printf("위안 : %d위안\n",(int)outputCNY);
-		printCharge(cnyCharge);
+		printResult(inputWon, outputCNY, RATE_CNY, choice);
 	} else {
-		printf("기준 환율 : %.2f\n",RATE_GBP);
-		printf("환전 결과\n");
-		outputGBP = inputWon / RATE_GBP; //파운드 계산 
-		int gbpCharge = calculateCharge(inputWon, outputGBP, RATE_GBP); //거스름돈 계산 
-		printf("파운드 : %d파운드\n",(int)outputGBP);
-		printCharge(gbpCharge);
+		printResult(inputWon, outputGBP, RATE_GBP, choice);
 	} 
-	 
 
-/*	
-switch ~ case문 연습
- 
-	switch(choice){
-		case 1: {
-			printf("기준 환율 : %.2f\n",RATE_USD);
-			printf("환전 결과\n");
-			outputUSD = inputWon / RATE_USD; //달러  계산 
-			int usdCharge = calculateCharge(inputWon, outputUSD, RATE_USD); // 거스름돈 계산 
-			printf("달러 : %d달러\n",(int)outputUSD);
-			printCharge(usdCharge);
-			break;
-		}
-		case 2:{
-			printf("기준 환율 : %.2f\n",RATE_JPY);
-			printf("환전 결과\n");
-			outputJPY = (inputWon / RATE_JPY)-(int)(inputWon / RATE_JPY)%100; // 엔화 금액 계산 
-			int jpyCharge = calculateCharge(inputWon, outputJPY, RATE_JPY); //거스름돈 계산	
-			printf("엔 : %d엔\n",(int)outputJPY);
-			printCharge(jpyCharge);
-			break;
-		}
-		case 3:{
-			printf("기준 환율 : %.2f\n",RATE_EUR);
-			printf("환전 결과\n");
-			outputEUR = inputWon / RATE_EUR; //유로 계산 
-			int eurCharge = calculateCharge(inputWon, outputEUR, RATE_EUR); //거스름돈 계산	
-			printf("유로 : %d유로\n",(int)outputEUR);
-			printCharge(eurCharge);
-			break;		
-		}
-		case 4:{
-			printf("기준 환율 : %.2f\n",RATE_CNY);
-			printf("환전 결과\n");
-			outputCNY = inputWon / RATE_CNY; //위안 계산 
-			int cnyCharge = calculateCharge(inputWon, outputCNY, RATE_CNY); //거스름돈 계산	
-			printf("위안 : %d위안\n",(int)outputCNY);
-			printCharge(cnyCharge);
-			break;		
-		}
-		case 5:{
-			printf("기준 환율 : %.2f\n",RATE_GBP);
-			printf("환전 결과\n");
-			outputGBP = inputWon / RATE_GBP; //파운드 계산 
-			int gbpCharge = calculateCharge(inputWon, outputGBP, RATE_GBP); //거스름돈 계산 
-			printf("파운드 : %d파운드\n",(int)outputGBP);
-			printCharge(gbpCharge);
-			break;	
-		}
-		default:{
-			printf("잘못 입력하셨습니다.");
-			break;
-		}
-	}
-	*/
 	return 0;
 }
