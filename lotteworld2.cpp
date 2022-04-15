@@ -37,17 +37,17 @@ int main() {
 	
 	if (tm.tm_hour >21 || tm.tm_hour < 10)
 	{
-		printf("Áö±İÀº ¿µ¾÷½Ã°£ÀÌ ¾Æ´Õ´Ï´Ù.\n¿µ¾÷½Ã°£: ¸ÅÀÏ 10:00 ~ 21:00\n");
+		printf("ì§€ê¸ˆì€ ì˜ì—…ì‹œê°„ì´ ì•„ë‹™ë‹ˆë‹¤.\nì˜ì—…ì‹œê°„: ë§¤ì¼ 10:00 ~ 21:00\n");
 	 } 
 	
 	if (tm.tm_hour >= 10 && tm.tm_hour < 21)
 	{
 		do {
-		printf("±ÇÁ¾À» ¼±ÅÃÇÏ¼¼¿ä.\n1. Á¾ÇÕÀÌ¿ë±Ç(ÀÌ¿ë¹üÀ§: ·Ôµ¥¿ùµå+¹Î¼Ó¹Ú¹°°ü)\n2. ÆÄÅ©ÀÌ¿ë±Ç(ÀÌ¿ë¹üÀ§: ·Ôµ¥¿ùµå)\n");
+		printf("ê¶Œì¢…ì„ ì„ íƒí•˜ì„¸ìš”.\n1. ì¢…í•©ì´ìš©ê¶Œ(ì´ìš©ë²”ìœ„: ë¡¯ë°ì›”ë“œ+ë¯¼ì†ë°•ë¬¼ê´€)\n2. íŒŒí¬ì´ìš©ê¶Œ(ì´ìš©ë²”ìœ„: ë¡¯ë°ì›”ë“œ)\n");
 		scanf("%d", &ticketNumber);
 	}while(ticketNumber < 1 || ticketNumber > 2);
 	
-	printf("\n¸î°³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î?\n");
+	printf("\nëª‡ê°œë¥¼ ì£¼ë¬¸í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n");
 	scanf("%d", &personNumber);
 	
 	if (ticketNumber == 1 && tm.tm_hour >= 10 && tm.tm_hour < 16)
@@ -56,16 +56,16 @@ int main() {
 		
 		for (index = 1; index <= personNumber; index++)
 		{
-			printf("»ı³â¿ùÀÏ 8ÀÚ¸®¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"); 
+			printf("ìƒë…„ì›”ì¼ 8ìë¦¬ë¥¼ ì…ë ¥í•˜ì„¸ìš”.  ex) 19950708\n"); 
 			scanf("%d", &birth);
 			
-			int birY = birth / 10000; // ÅÂ¾î³­ ³âµµ¸¦ ÃßÃâ 
-			int birM = (birth % 1000) / 100; // ÅÂ¾î³­ ¿ùÀ» ÃßÃâ 
-			int birD = birth % 100; // ÅÂ¾î³­ ³¯À» ÃßÃâ 
+			int birY = birth / 10000; // íƒœì–´ë‚œ ë…„ë„ë¥¼ ì¶”ì¶œ 
+			int birM = (birth % 1000) / 100; // íƒœì–´ë‚œ ì›”ì„ ì¶”ì¶œ 
+			int birD = birth % 100; // íƒœì–´ë‚œ ë‚ ì„ ì¶”ì¶œ 
 			
 			int age = 0;
 			
-			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //¿À´ÃÀÌ »ıÀÏÀÌ°Å³ª ÀÌ¹Ì Áö³µÀ» °æ¿ì 
+			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //ì˜¤ëŠ˜ì´ ìƒì¼ì´ê±°ë‚˜ ì´ë¯¸ ì§€ë‚¬ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY;
 				
@@ -90,7 +90,7 @@ int main() {
 					charge = charge1D[3];
 					cntA++;
 				}		
-			} else if (birM < tm.tm_mon+1)//¾ÆÁ÷ »ıÀÏÀ» Áö³ªÁö ¾Ê¾ÒÀ» °æ¿ì 
+			} else if (birM < tm.tm_mon+1)//ì•„ì§ ìƒì¼ì„ ì§€ë‚˜ì§€ ì•Šì•˜ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY -1;
 				
@@ -117,8 +117,8 @@ int main() {
 				}
 			}
 			
-			printf("\n¿ì´ë»çÇ×À» ¼±ÅÃÇÏ¼¼¿ä.\n");
-			printf("1. ¾øÀ½ (³ªÀÌ ¿ì´ë´Â ÀÚµ¿Ã³¸®)\n2. Àå¾ÖÀÎ\n3. ±¹°¡À¯°øÀÚ\n4. ÈŞ°¡Àåº´\n5. ÀÓ»êºÎ\n6. ´ÙµÕÀÌ\n");
+			printf("\nìš°ëŒ€ì‚¬í•­ì„ ì„ íƒí•˜ì„¸ìš”.\n");
+			printf("1. ì—†ìŒ (ë‚˜ì´ ìš°ëŒ€ëŠ” ìë™ì²˜ë¦¬)\n2. ì¥ì• ì¸\n3. êµ­ê°€ìœ ê³µì\n4. íœ´ê°€ì¥ë³‘\n5. ì„ì‚°ë¶€\n6. ë‹¤ë‘¥ì´\n");
 			scanf("%d", &prefer);
 			
 			switch (prefer)
@@ -157,7 +157,7 @@ int main() {
 				printf("default\n");		
 				break;
 			}
-			printf("¿ä±İ: %d¿ø\n\n", saleCharge);
+			printf("ìš”ê¸ˆ: %dì›\n\n", saleCharge);
 		} 
 	} else if (ticketNumber == 1 && tm.tm_hour >= 16 && tm.tm_hour < 21)
 	{
@@ -165,16 +165,16 @@ int main() {
 		
 		for (index = 1; index <= personNumber; index++)
 		{
-			printf("»ı³â¿ùÀÏ 8ÀÚ¸®¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"); 
+			printf("ìƒë…„ì›”ì¼ 8ìë¦¬ë¥¼ ì…ë ¥í•˜ì„¸ìš”.  ex) 19950708\n"); 
 			scanf("%d", &birth);
 			
-			int birY = birth / 10000; // ÅÂ¾î³­ ³âµµ¸¦ ÃßÃâ 
-			int birM = (birth % 1000) / 100; // ÅÂ¾î³­ ¿ùÀ» ÃßÃâ 
-			int birD = birth % 100; // ÅÂ¾î³­ ³¯À» ÃßÃâ 
+			int birY = birth / 10000; // íƒœì–´ë‚œ ë…„ë„ë¥¼ ì¶”ì¶œ 
+			int birM = (birth % 1000) / 100; // íƒœì–´ë‚œ ì›”ì„ ì¶”ì¶œ 
+			int birD = birth % 100; // íƒœì–´ë‚œ ë‚ ì„ ì¶”ì¶œ 
 			
 			int age = 0;
 			
-			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //¿À´ÃÀÌ »ıÀÏÀÌ°Å³ª ÀÌ¹Ì Áö³µÀ» °æ¿ì 
+			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //ì˜¤ëŠ˜ì´ ìƒì¼ì´ê±°ë‚˜ ì´ë¯¸ ì§€ë‚¬ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY;
 				
@@ -199,7 +199,7 @@ int main() {
 					charge = chargeA4[3];
 					cntA++;
 				}		
-			} else if (birM < tm.tm_mon+1)//¾ÆÁ÷ »ıÀÏÀ» Áö³ªÁö ¾Ê¾ÒÀ» °æ¿ì 
+			} else if (birM < tm.tm_mon+1)//ì•„ì§ ìƒì¼ì„ ì§€ë‚˜ì§€ ì•Šì•˜ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY -1;
 				
@@ -226,8 +226,8 @@ int main() {
 				}
 			}
 			
-			printf("\n¿ì´ë»çÇ×À» ¼±ÅÃÇÏ¼¼¿ä.\n");
-			printf("1. ¾øÀ½ (³ªÀÌ ¿ì´ë´Â ÀÚµ¿Ã³¸®)\n2. Àå¾ÖÀÎ\n3. ±¹°¡À¯°øÀÚ\n4. ÈŞ°¡Àåº´\n5. ÀÓ»êºÎ\n6. ´ÙµÕÀÌ\n");
+			printf("\nìš°ëŒ€ì‚¬í•­ì„ ì„ íƒí•˜ì„¸ìš”.\n");
+			printf("1. ì—†ìŒ (ë‚˜ì´ ìš°ëŒ€ëŠ” ìë™ì²˜ë¦¬)\n2. ì¥ì• ì¸\n3. êµ­ê°€ìœ ê³µì\n4. íœ´ê°€ì¥ë³‘\n5. ì„ì‚°ë¶€\n6. ë‹¤ë‘¥ì´\n");
 			scanf("%d", &prefer);
 			
 			switch (prefer)
@@ -266,7 +266,7 @@ int main() {
 				printf("default\n");		
 				break;
 			}
-			printf("¿ä±İ: %d¿ø\n\n", saleCharge);
+			printf("ìš”ê¸ˆ: %dì›\n\n", saleCharge);
 		}
 	} else if (ticketNumber == 2 && tm.tm_hour >= 10 && tm.tm_hour < 16)
 	{
@@ -274,16 +274,16 @@ int main() {
 		
 		for (index = 1; index <= personNumber; index++)
 		{
-			printf("»ı³â¿ùÀÏ 8ÀÚ¸®¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"); 
+			printf("ìƒë…„ì›”ì¼ 8ìë¦¬ë¥¼ ì…ë ¥í•˜ì„¸ìš”.  ex) 19950708\n"); 
 			scanf("%d", &birth);
 			
-			int birY = birth / 10000; // ÅÂ¾î³­ ³âµµ¸¦ ÃßÃâ 
-			int birM = (birth % 1000) / 100; // ÅÂ¾î³­ ¿ùÀ» ÃßÃâ 
-			int birD = birth % 100; // ÅÂ¾î³­ ³¯À» ÃßÃâ 
+			int birY = birth / 10000; // íƒœì–´ë‚œ ë…„ë„ë¥¼ ì¶”ì¶œ 
+			int birM = (birth % 1000) / 100; // íƒœì–´ë‚œ ì›”ì„ ì¶”ì¶œ 
+			int birD = birth % 100; // íƒœì–´ë‚œ ë‚ ì„ ì¶”ì¶œ 
 			
 			int age = 0;
 			
-			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //¿À´ÃÀÌ »ıÀÏÀÌ°Å³ª ÀÌ¹Ì Áö³µÀ» °æ¿ì 
+			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //ì˜¤ëŠ˜ì´ ìƒì¼ì´ê±°ë‚˜ ì´ë¯¸ ì§€ë‚¬ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY;
 				
@@ -308,7 +308,7 @@ int main() {
 					charge = chargeP1D[3];
 					cntA++;
 				}		
-			} else if (birM < tm.tm_mon+1)//¾ÆÁ÷ »ıÀÏÀ» Áö³ªÁö ¾Ê¾ÒÀ» °æ¿ì 
+			} else if (birM < tm.tm_mon+1)//ì•„ì§ ìƒì¼ì„ ì§€ë‚˜ì§€ ì•Šì•˜ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY -1;
 				
@@ -335,8 +335,8 @@ int main() {
 				}
 			}
 			
-			printf("\n¿ì´ë»çÇ×À» ¼±ÅÃÇÏ¼¼¿ä.\n");
-			printf("1. ¾øÀ½ (³ªÀÌ ¿ì´ë´Â ÀÚµ¿Ã³¸®)\n2. Àå¾ÖÀÎ\n3. ±¹°¡À¯°øÀÚ\n4. ÈŞ°¡Àåº´\n5. ÀÓ»êºÎ\n6. ´ÙµÕÀÌ\n");
+			printf("\nìš°ëŒ€ì‚¬í•­ì„ ì„ íƒí•˜ì„¸ìš”.\n");
+			printf("1. ì—†ìŒ (ë‚˜ì´ ìš°ëŒ€ëŠ” ìë™ì²˜ë¦¬)\n2. ì¥ì• ì¸\n3. êµ­ê°€ìœ ê³µì\n4. íœ´ê°€ì¥ë³‘\n5. ì„ì‚°ë¶€\n6. ë‹¤ë‘¥ì´\n");
 			scanf("%d", &prefer);
 			
 			switch (prefer)
@@ -375,7 +375,7 @@ int main() {
 				printf("default\n");		
 				break;
 			}
-			printf("¿ä±İ: %d¿ø\n\n", saleCharge);
+			printf("ìš”ê¸ˆ: %dì›\n\n", saleCharge);
 		}
 	} else if (ticketNumber == 2 && tm.tm_hour >= 16 && tm.tm_hour < 21)
 	{
@@ -383,16 +383,16 @@ int main() {
 		
 		for (index = 1; index <= personNumber; index++)
 		{
-			printf("»ı³â¿ùÀÏ 8ÀÚ¸®¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"); 
+			printf("ìƒë…„ì›”ì¼ 8ìë¦¬ë¥¼ ì…ë ¥í•˜ì„¸ìš”.  ex) 19950708\n"); 
 			scanf("%d", &birth);
 			
-			int birY = birth / 10000; // ÅÂ¾î³­ ³âµµ¸¦ ÃßÃâ 
-			int birM = (birth % 1000) / 100; // ÅÂ¾î³­ ¿ùÀ» ÃßÃâ 
-			int birD = birth % 100; // ÅÂ¾î³­ ³¯À» ÃßÃâ 
+			int birY = birth / 10000; // íƒœì–´ë‚œ ë…„ë„ë¥¼ ì¶”ì¶œ 
+			int birM = (birth % 1000) / 100; // íƒœì–´ë‚œ ì›”ì„ ì¶”ì¶œ 
+			int birD = birth % 100; // íƒœì–´ë‚œ ë‚ ì„ ì¶”ì¶œ 
 			
 			int age = 0;
 			
-			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //¿À´ÃÀÌ »ıÀÏÀÌ°Å³ª ÀÌ¹Ì Áö³µÀ» °æ¿ì 
+			if ((birM > tm.tm_mon+1) || (birM == tm.tm_mon+1 && birD >= tm.tm_mday)) //ì˜¤ëŠ˜ì´ ìƒì¼ì´ê±°ë‚˜ ì´ë¯¸ ì§€ë‚¬ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY;
 				
@@ -417,7 +417,7 @@ int main() {
 					charge = chargePA4[3];
 					cntA++;
 				}		
-			} else if (birM < tm.tm_mon+1)//¾ÆÁ÷ »ıÀÏÀ» Áö³ªÁö ¾Ê¾ÒÀ» °æ¿ì 
+			} else if (birM < tm.tm_mon+1)//ì•„ì§ ìƒì¼ì„ ì§€ë‚˜ì§€ ì•Šì•˜ì„ ê²½ìš° 
 			{
 				age = tm.tm_year+1900 - birY -1;
 				
@@ -444,8 +444,8 @@ int main() {
 				}
 			}
 			
-			printf("\n¿ì´ë»çÇ×À» ¼±ÅÃÇÏ¼¼¿ä.\n");
-			printf("1. ¾øÀ½ (³ªÀÌ ¿ì´ë´Â ÀÚµ¿Ã³¸®)\n2. Àå¾ÖÀÎ\n3. ±¹°¡À¯°øÀÚ\n4. ÈŞ°¡Àåº´\n5. ÀÓ»êºÎ\n6. ´ÙµÕÀÌ\n");
+			printf("\nìš°ëŒ€ì‚¬í•­ì„ ì„ íƒí•˜ì„¸ìš”.\n");
+			printf("1. ì—†ìŒ (ë‚˜ì´ ìš°ëŒ€ëŠ” ìë™ì²˜ë¦¬)\n2. ì¥ì• ì¸\n3. êµ­ê°€ìœ ê³µì\n4. íœ´ê°€ì¥ë³‘\n5. ì„ì‚°ë¶€\n6. ë‹¤ë‘¥ì´\n");
 			scanf("%d", &prefer);
 			
 			switch (prefer)
@@ -484,12 +484,12 @@ int main() {
 				printf("default\n");		
 				break;
 			}
-			printf("¿ä±İ: %d¿ø\n\n", saleCharge);
+			printf("ìš”ê¸ˆ: %dì›\n\n", saleCharge);
 		}
 	}
-	printf("\n\nÆ¼ÄÏ ¹ß±ÇÀ» Á¾·áÇÕ´Ï´Ù. °¨»çÇÕ´Ï´Ù.\n\n");
-	printf("---------------·Ôµ¥¿ùµå---------------\n");
-	printf("¾î¸¥ x %d\nÃ»¼Ò³â x %d\n¾î¸°ÀÌ x %d\nº£ÀÌºñ x %d\n\n", cntA, cntY, cntC, cntB);
-	printf("ÀÔÀå·á ÃÑ¾×Àº  %d¿ø ÀÔ´Ï´Ù.", plusCharge);
+	printf("\n\ní‹°ì¼“ ë°œê¶Œì„ ì¢…ë£Œí•©ë‹ˆë‹¤. ê°ì‚¬í•©ë‹ˆë‹¤.\n\n");
+	printf("---------------ë¡¯ë°ì›”ë“œ---------------\n");
+	printf("ì–´  ë¥¸ x %d\nì²­ì†Œë…„ x %d\nì–´ë¦°ì´ x %d\në² ì´ë¹„ x %d\n\n", cntA, cntY, cntC, cntB);
+	printf("ì…ì¥ë£Œ ì´ì•¡ì€  %dì› ì…ë‹ˆë‹¤.", plusCharge);
 	}
 }
